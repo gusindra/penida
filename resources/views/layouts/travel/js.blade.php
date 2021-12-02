@@ -14,7 +14,6 @@
 <script type="text/javascript" src="{{ url('assets/travel/js/switcher.js') }}"></script>
 <script src="{{ url('assets/travel/js/script.js') }}"></script>
 <script type="text/javascript" src="{{ url('assets/travel/js/instafeed.min.js') }}"></script> -->
-
 <script src="https://res.cloudinary.com/dionlinein/raw/upload/v1638149938/penidachoice/js/travel.min.js"></script>
 <!-- <script src="{{ url('js/travel.js') }}"></script> -->
 

@@ -34,8 +34,8 @@
 <!-- <link href="{{ url('assets/travel/css/owl.carousel.css') }}" rel="stylesheet"> -->
 <!-- Main CSS -->
 <!-- <link href="{{ url('assets/travel/css/style.css') }}" rel="stylesheet"> -->
-<link href="https://res.cloudinary.com/dionlinein/raw/upload/v1638149925/penidachoice/css/travel.min.css" rel="stylesheet">
-<!-- <link href="{{url('css/travel.min.css')}}" rel="stylesheet"> -->
+<!-- <link href="https://res.cloudinary.com/dionlinein/raw/upload/v1638273120/penidachoice/css/travel.min.css" rel="stylesheet"> -->
+<link href="{{url('css/travel.min.css')}}" rel="stylesheet">
 <!--Google Fonts-->
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,500,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300italic,400italic,700' rel='stylesheet' type='text/css'>

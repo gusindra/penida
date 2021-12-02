@@ -16,11 +16,21 @@ class Gallery extends Model
     protected $fillable = [
         'title',
         'url',
-        'tag'
+        'tag',
+        'status',
+        'halaman_id'
     ];
 
     protected $dates = [
         'created_at',
         'updated_at',
     ];
+
+     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function halaman()
+    {
+        return $this->belongsTo('App\Models\Halaman', 'halaman_id');
+    }
 }

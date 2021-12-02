@@ -25,6 +25,7 @@
     <!-- ****** Footer Area End ****** -->
 
     @include('layouts.travel.js')
+    @yield('js')
 
 </body>
 </html>

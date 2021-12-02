@@ -22,26 +22,6 @@ class PekaranganController extends BackadminController
         $request->request->add(['order', "0"]);
         //return $request;
         $hal = Halaman::create($request->except(['_method','_token']));
-        $imageName = $hal->id . '.jpg';
-
-        if ($request->has('image') && $request->image != null) {
-            $resizedImage = cloudinary()->upload($request->file('image')->getRealPath(), [
-                'folder' => 'penidachoice',
-                'transformation' => [
-                    'quality' => 'auto',
-                    'fetch_format' => 'auto'
-                ]
-            ])->getSecurePath();
-
-            $hal->update([
-                'gambar' => $resizedImage
-            ]);
-            // $request->file('image')->move(
-            //     // base_path() . '/../public_html/upload/', $imageName
-            //     base_path() . '/public/upload/', $imageName
-            // );
-        }
-
 
         return redirect()->to(route('edit.karang', $hal->id));
     }
@@ -67,6 +47,9 @@ class PekaranganController extends BackadminController
                 ]
             ])->getSecurePath();
 
+            $hal->update([
+                'gambar' => $resizedImage
+            ]);
             // dd($resizedImage); //"https://res.cloudinary.com/dionlinein/image/upload/v1638161642/penidachoice/ujuecif3vtoje1oewa5u.jpg"
             // $resizedImage = "https://res.cloudinary.com/dionlinein/image/upload/v1638161642/penidachoice/ujuecif3vtoje1oewa5u.jpg";
             // $pieces = explode("/", $resizedImage);
@@ -77,9 +60,7 @@ class PekaranganController extends BackadminController
             //     base_path() . '/public/upload/', $imageName
             // );
 
-            $hal->update([
-                'gambar' => $resizedImage
-            ]);
+
         }
         return redirect()->to(route('edit.karang', $hal->id));
     }

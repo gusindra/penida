@@ -1,8 +1,12 @@
 @extends('layouts.travel.main', ['sosmed' => $sosmed, 'app' => $app])
 @section('content')
-
+    <style>
+        .ql-tooltip{
+            display:none;
+        }
+    </style>
     <!-- Page Title-->
-    <section id="page-title" class="parallax" data-stellar-background-ratio="0.5" style="background-image: url(img/single-tour/bg.jpg);">
+    <section id="page-title" class="parallax" data-stellar-background-ratio="0.5" style="background-image: url(https://res.cloudinary.com/dionlinein/image/upload/v1638245975/penidachoice/bg.jpg);">
         <div class="title-info">
             <div class="container">
                 <div class="row">
@@ -25,7 +29,7 @@
                     <div class="content-block">
                         <div class="single_post">
                             <div class="post_thumb">
-                                <img src="{{$konten->gambar? cloud_image_url($konten->gambar, 'res') : url('upload/'.$konten->gambar.'.jpg')}}" alt="{{$konten->judul}}" />
+                                <img src="{{$konten->gambar? cloud_image_url($konten->gambar, 'res') : url('upload/'.$konten->id.'.jpg')}}" alt="{{$konten->judul}}" />
                             </div><!--end post thumb-->
 
                             <div class="post_desc">
@@ -52,7 +56,7 @@
                                 </div>
                             @endif
                             @include('partials.messages')
-                            <form method="POST" action="{{ route('booking') }}">
+                            <form class="hide" method="POST" action="{{ route('booking') }}">
                                 <div class="form-group">
 
                                     <div class="input-group">
@@ -178,16 +182,44 @@
 
 
                             </form>
+                            @foreach($sosmed as $chat)
+                                @if($chat->konten!='' && $chat->konten!='/')
+                                    <a target="_blank" href="{{$chat->konten}}?text=Saya%20tertarik%20dengan%20{{$konten->judul}}" class="booking btn btn-primary">Book Sekarang via {{$chat->judul}}</a><br><br>
+                                @endif
+                            @endforeach
                         </div><!--end sidebar-item-->
-
 
                     </div><!--end sidebar-->
                 </div>
+                <!-- Deals and Discounts -->
+
+            </div>
+            <div id="gallery" class="inverse">
+
+                <ul class="gallery-item">
+                        @foreach ($konten->gallery as $img)
+                        <li class="gallery gallery-page">
+                            <div class="thumb">
+                                <img src="{{url($img->url)}}" alt="" />
+                                <div class="gallery-overlay">
+                                    <div class="gallery-overlay-inner">
+                                        <h2>{{$img->title}}</h2>
+                                        <a href="{{url($img->url)}}" class="fancybox"><i class="fa fa-camera"></i></a>
+                                    </div>
+                                </div>
+                            </div><!--end post thumb-->
+                        </li>
+                        @endforeach
+
+                </ul>
+                <div id="instafeed"></div>
 
             </div>
         </div>
     </section>
     <!--end main-content-->
+
+
 
     <!-- Deals and Discounts -->
     <section id="deals-discounts" class="inverse">
@@ -206,7 +238,7 @@
                         @foreach($halaman as $h)
                         <div class="tour-item">
                             <div class="thumb">
-                                <img src="{{$halaman->gambar? cloud_image_url($h->gambar, 'res') : url('upload/'.$halaman->id.'.jpg')}}" alt="{{$halaman->judul}}" />
+                                <a href="{{route('page', $h->slug)}}"><img src="{{$h->gambar? cloud_image_url($h->gambar, 'res') : url('upload/'.$h->id.'.jpg')}}" alt="{{$h->judul}}" /></a>
                             </div>
 
                             <div class="discount-info">
@@ -225,4 +257,10 @@
 
     </section>
     <!--end deals-discounts-->
+@endsection
+
+@section('js')
+<script>
+    $("#mygallery").justifiedGallery();
+</script>
 @endsection

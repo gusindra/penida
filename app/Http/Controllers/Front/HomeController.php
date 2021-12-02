@@ -24,7 +24,7 @@ class HomeController extends FrontbaseController
         $services = Pengaturan::where('judul', 'services')->get();
         $app = Pengaturan::where('key', 'app')->get();
         $halaman = Halaman::where('tipe', 'tour')->orderBy('order','asc')->where('status','active')->get();
-        $gallery = Gallery::all();
+        $gallery = Gallery::where('halaman_id',null)->get();
         $tag = DB::table('gallerys')->groupBy('tag')->get();
         // return \View::make('frontend.home' , compact('sosmed', 'caption', 'services', 'app'));
         return view('travel.home' , compact('sosmed', 'caption', 'services', 'app', 'halaman', 'gallery','tag', 'logo'));

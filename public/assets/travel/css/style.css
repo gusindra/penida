@@ -1670,6 +1670,8 @@ section{
 
 }
 
+.gallery-item .gallery-page{width: 16.3%;margin: 1px;}
+
 .gallery-item li .thumb{
 
 	width:100%;
@@ -3362,7 +3364,7 @@ h3{
 
 .gallery-item li{
 
-	width:100%;
+	width:32% !important;
 
 }
 

@@ -16,6 +16,7 @@ class GalleryController extends BackadminController
     }
 
     public function store(GalleryRequest $request){
+
         $request->request->add(['order', "0"]);
         //return $request;
         $hal = Gallery::create($request->except(['_method','_token']));
@@ -41,7 +42,9 @@ class GalleryController extends BackadminController
             //     'url' => 'upload/gallery/'.$imageName
             // ]);
         }
-
+        if($hal->halaman_id){
+            return redirect()->to(route('edit.karang', $hal->halaman_id));
+        }
 
         return redirect()->to(route('edit.gallery', $hal->id));
     }
@@ -80,11 +83,15 @@ class GalleryController extends BackadminController
             ]);
 
         }
+        if($hal->halaman_id){
+            return redirect()->to(route('edit.karang', $hal->halaman_id));
+        }
         return redirect()->to(route('edit.gallery', $hal->id));
     }
 
     public function hapus($id){
         $img = Gallery::find($id);
+        $halaman = $img->halaman_id;
         if($img->url){
             // File::delete($img->url);
             $url = explode("/", $img->url);
@@ -92,7 +99,9 @@ class GalleryController extends BackadminController
             cloudinary()->destroy('penidachoice/'.current($gambar));
         }
         Gallery::destroy($id);
-
+        if($halaman != null){
+            return redirect()->to(route('edit.karang', $halaman));
+        }
         return redirect()->to(route('setting','gallery'));
     }
 }

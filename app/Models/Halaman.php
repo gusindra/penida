@@ -29,6 +29,11 @@ class Halaman extends Model
 
     public function orders()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Order');
+    }
+
+    public function gallery()
+    {
+        return $this->hasMany('App\Models\Gallery');
     }
 }

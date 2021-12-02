@@ -32,7 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbar">
 
-                    <ul class="nav navbar-nav navbar-right" style="margin-top: 30px;">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top: 12px;">
 
                         <li class="{{ str_replace(url('/'), '', url()->current())==''?'active':'' }}">
 
